@@ -1,0 +1,11 @@
+h1 {
+    color:darkblue;
+    background-color:aqua;
+    text-align: center;
+}
+canvas {
+    background-color: black;
+}
+.sliders_box {
+    display: inline-block;
+}
