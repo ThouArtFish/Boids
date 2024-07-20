@@ -9,23 +9,34 @@
         <h1>Simple Boids</h1>
         <div id="main">
             <canvas id="display" width="750" height="750"></canvas>
-            <div class="sliders_box">
-                <p>Speed</p>
+            <div id="slider_box">
+                <p class="slider_title">Speed</p>
                 <input class="sliders" type="range" id="slider_V" min="1" max="40">
                 <label for="slider_V" id="slider_V_label"></label>
-                <p>Cohesion</p>
+                <p>Controls the speed at which the boids move</p>
+                <p class="slider_title">Cohesion</p>
                 <input class="sliders" type="range" id="slider_C" min="0" max="10">
                 <label for="slider_C" id="slider_C_label"></label>
-                <p>Alignment</p>
+                <p>Controls how much the boids will bunch together</p>
+                <p class="slider_title">Alignment</p>
                 <input class="sliders" type="range" id="slider_A" min="0" max="10">
                 <label for="slider_A" id="slider_A_label"></label>
-                <p>Separation</p>
+                <p>Controls how much the boids will match the direction of its neighbours</p>
+                <p class="slider_title">Separation</p>
                 <input class="sliders" type="range" id="slider_S" min="0" max="10">
                 <label for="slider_S" id="slider_S_label"></label>
-                <p>Boid Count</p>
+                <p>Controls how much the boids will avoid each other</p>
+                <p class="slider_title">Boid Count</p>
                 <input class="sliders" type="range" id="slider_B" min="1" max="80">
                 <label for="slider_B" id="slider_B_label"></label>
+                <p>Controls how many boids are in the simulation</p>
             </div>
+            <p id="desc">
+                <a href="https://en.wikipedia.org/wiki/Boids">Boids</a> is an artificial life program developed by Craig Reynolds in 1986. 
+                Meant to mimic the movement of flocking birds, it is a great example of emergent behaviour,
+                where individual agents who only follow simple rules can simulate complex behaviour by interacting with one another.
+                Shown here is a simple simulation with adjustable values to change the behaviour of the "boids".
+            </p>
         </div>
         <script type="module" src="main.js"></script>
     </body>

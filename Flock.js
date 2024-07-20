@@ -3,7 +3,7 @@ import Vec2 from "./Vec2.js"
 
 // Class for updating boids
 export default class Flock {
-    constructor(count, width, height, gr = 40, bd = 4, al = 1, rf = 0.4, bf = 0.05, cf = 0.05, 
+    constructor(count, width, height, gr = 40, bd = 4, al = 1, rf = 0.6, bf = 0.05, cf = 0.05, 
         v = 2, a = 0.5, c = 0.5, s = 0.5
     ) {
         this.group_radius = gr;
@@ -41,14 +41,12 @@ export default class Flock {
                 danger_group.push(dist_vec.scale(this.speed * this.collision_factor));
             }
         }
-        return {safe: safe_group, danger: danger_group};
+        return [safe_group, danger_group];
     }
 
     updateBoid(i) {
         let boid = this.flock[i];
-        let groups = this.formGroups(i);
-        let safe_group = groups.safe;
-        let danger_group = groups.danger;
+        let [safe_group, danger_group] = this.formGroups(i);
         let total_vecs = [boid.vel];
         total_vecs.push(...danger_group);
         if (safe_group.length != 0) {

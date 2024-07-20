@@ -3,16 +3,28 @@ h1 {
     background-color:aqua;
     text-align: center;
 }
-#main {
-    position: relative;
-}
 canvas {
     position: absolute;
     background-color: black;
 }
-.sliders_box {
+#main {
+    position: relative;
+}
+.slider_title {
+    color: darkblue;
+    background-color: aqua;
+    text-align: center;
+}
+#slider_box {
     position: absolute;
-    top: 20px;
-    left: 760px;
+    top: 10px;
+    left: 900px;
     border: 2px solid #000;
+}
+#desc {
+    font-size: larger;
+    background-color: aqua;
+    position: absolute;
+    top: 580px;
+    left: 760px;
 }

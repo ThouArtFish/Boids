@@ -48,7 +48,7 @@ function updateVar() {
                 document.getElementById(elem.id + "_label").innerHTML = boids.speed;
                 break;
             case "slider_B":
-                for (let i = 0; i < Math.abs(elem.value - boids.flock.length); i++) {
+                while (elem.value != boids.flock.length) {
                     if (elem.value > boids.flock.length) {
                         boids.flock.push(new Boid(boids.randomInt(5, canvas.width-5), boids.randomInt(5, canvas.height-5), boids.speed));
                     } else if (elem.value < boids.flock.length) {
