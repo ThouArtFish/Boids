@@ -3,7 +3,7 @@ import Vec2 from "./Vec2.js"
 
 // Class for updating boids
 export default class Flock {
-    constructor(count, width, height, gr = 40, bd = 4, al = 1, rf = 0.6, bf = 0.05, cf = 0.05, 
+    constructor(count, width, height, gr = 50, bd = 4, al = 1, rf = 0.6, bf = 0.05, 
         v = 2, a = 0.5, c = 0.5, s = 0.5
     ) {
         this.group_radius = gr;
@@ -13,7 +13,6 @@ export default class Flock {
         this.align_leniency = al;
         this.rule_factor = rf;
         this.border_factor = bf;
-        this.collision_factor = cf;
         this.canvas_center = new Vec2(width/2, height/2);
         this.canvas_radius = this.canvas_center.length() + 10;
         this.speed = v
@@ -29,29 +28,23 @@ export default class Flock {
 
     formGroups(i) {
         let boid = this.flock[i];
-        let safe_group = [];
-        let danger_group = [];
+        let frens = [];
         for (let other_boid of this.flock) {
-            let dist_vec = boid.pos.subtract(other_boid.pos);
-            let dist_sq = dist_vec.lengthSq();
-            if (dist_sq <= this.group_radius_sq && other_boid !== boid) {
-                safe_group.push(other_boid);
-            }
-            if (dist_sq <= this.danger_radius_sq && other_boid !== boid) {
-                danger_group.push(dist_vec.scale(this.speed * this.collision_factor));
+            let dist_vec = boid.pos.subtract(other_boid.pos).lengthSq();
+            if (dist_vec <= this.group_radius_sq && other_boid !== boid) {
+                frens.push(other_boid);
             }
         }
-        return [safe_group, danger_group];
+        return frens;
     }
 
     updateBoid(i) {
         let boid = this.flock[i];
-        let [safe_group, danger_group] = this.formGroups(i);
+        let frens = this.formGroups(i);
         let total_vecs = [boid.vel];
-        total_vecs.push(...danger_group);
-        if (safe_group.length != 0) {
-            let group_heading = Vec2.sum(safe_group.map((b) => b.vel)).scale(this.speed);
-            let group_center = Vec2.sum(safe_group.map((b) => b.pos)).scalar(1/safe_group.length);
+        if (frens.length != 0) {
+            let group_heading = Vec2.sum(frens.map((b) => b.vel)).scale(this.speed);
+            let group_center = Vec2.sum(frens.map((b) => b.pos)).scalar(1/frens.length);
             let normal_dist_group = Math.min(group_center.subtract(boid.pos).length()/this.group_radius, 1);
             let dir_to_group_center = group_center.subtract(boid.pos).scale(this.speed);
 
