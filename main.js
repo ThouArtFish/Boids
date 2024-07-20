@@ -54,9 +54,6 @@ function updateVar() {
                     } else if (elem.value < boids.flock.length) {
                         boids.flock.pop(boids.flock[0])
                     }
-                    if (boids.flock.length == elem.value) {
-                        break;
-                    }
                 }
                 document.getElementById(elem.id + "_label").innerHTML = elem.value;
                 break;

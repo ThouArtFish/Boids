@@ -3,9 +3,16 @@ h1 {
     background-color:aqua;
     text-align: center;
 }
+#main {
+    position: relative;
+}
 canvas {
+    position: absolute;
     background-color: black;
 }
 .sliders_box {
-    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 760px;
+    border: 2px solid #000;
 }
