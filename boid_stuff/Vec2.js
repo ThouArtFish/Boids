@@ -1,3 +1,4 @@
+
 // Class for managing vector calculations
 export default class Vec2 {
     constructor(x, y) {

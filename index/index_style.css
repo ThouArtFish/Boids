@@ -1,0 +1,37 @@
+h1 {
+    color:darkblue;
+    background-color:aqua;
+    text-align: center;
+}
+canvas {
+    top: 160px;
+    position: absolute;
+    background-color: black;
+}
+
+.slider_title {
+    color: darkblue;
+    background-color: aqua;
+    text-align: center;
+}
+#slider_box {
+    position: absolute;
+    top: 160px;
+    left: 870px;
+    border: 2px solid #000;
+}
+#desc {
+    font-size: larger;
+    background-color: aqua;
+    position: absolute;
+    top: 60px;
+}
+#links {
+    position: absolute;
+    top: 730px;
+    left: 810px;
+    background-color: aqua;
+}
+h2 {
+    color: darkblue;
+}
