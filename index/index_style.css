@@ -1,3 +1,6 @@
+body {
+    background-color: lightblue;
+}
 h1 {
     color:darkblue;
     background-color:aqua;
@@ -8,7 +11,6 @@ canvas {
     position: absolute;
     background-color: black;
 }
-
 .slider_title {
     color: darkblue;
     background-color: aqua;

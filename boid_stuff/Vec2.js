@@ -23,6 +23,9 @@ export default class Vec2 {
     scale(x) {
         return this.scalar((x || 1)/this.length());
     }
+    static randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     static sum(vec_arr) {
         let total = new Vec2();
         for (let vec of vec_arr) {

@@ -1,4 +1,5 @@
 import Flock from "../boid_stuff/Flock.js";
+import Vec2 from "../boid_stuff/Vec2.js";
 
 // Constants
 const canvas = document.getElementById("display");
@@ -6,7 +7,7 @@ const ctx = canvas.getContext("2d");
 // initialise flock
 const boids = new Flock({count: 100, width: canvas.width, height: canvas.height});
 // length of boid pointer
-const boid_head = 20;
+const boid_head = 18;
 // track time
 var lastTime = 0;
 
@@ -34,7 +35,7 @@ function updateVar() {
             case "slider_B":
                 while (elem.value != boids.flock.length) {
                     if (elem.value > boids.flock.length) {
-                        boids.flock.push(boids.createBoid(boids.randomInt(5, canvas.width-5), boids.randomInt(5, canvas.height-5)));
+                        boids.flock.push(boids.createBoid(Vec2.randomInt(5, canvas.width-5), Vec2.randomInt(5, canvas.height-5)));
                     } else if (elem.value < boids.flock.length) {
                         boids.flock.shift();
                     }
@@ -62,15 +63,16 @@ function drawBoid(boid) {
 
 // updates html canvas
 function updateDisplay(timestamp) {
-    let deltaTime = (timestamp - lastTime) / 1000;
+    let dTime = (timestamp - lastTime) * 0.06;
     lastTime = timestamp;
     // Clears canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Update adjustable variables
     updateVar();
     // Updates each boid and then draws them
-    boids.updateBoids(deltaTime * 60);
+    let total_frens = boids.formGroups();
     for (let i = 0; i < boids.flock.length; i++) {
+        boids.updateBoid({deltaTime: dTime, i: i, frens: total_frens[i]});
         drawBoid(boids.flock[i]);
     }
     // Loops
